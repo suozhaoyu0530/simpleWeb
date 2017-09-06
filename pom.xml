@@ -6,7 +6,7 @@
 	<groupId>com.xiaosuo</groupId>
 	<artifactId>simple</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>simple</name>
 	<description>Demo project for Spring Boot</description>
@@ -37,7 +37,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -53,6 +53,32 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.1.2</version>
 		</dependency>
+		
+		<!-- 添加 tomcat 的支持 -->  
+		<dependency>  
+		    <groupId>org.springframework.boot</groupId>  
+		    <artifactId>spring-boot-starter-tomcat</artifactId>  
+		    <scope>provided</scope>  
+		</dependency>  
+		  
+		<dependency>  
+		    <groupId>org.apache.tomcat.embed</groupId>  
+		    <artifactId>tomcat-embed-jasper</artifactId>  
+		    <scope>provided</scope>  
+		</dependency>  
+		  
+		<!-- servlet 依赖 -->  
+		<dependency>  
+		    <groupId>javax.servlet</groupId>  
+		    <artifactId>javax.servlet-api</artifactId>  
+		    <scope>provided</scope>  
+		</dependency>  
+		  
+		<!-- 添加 JSTL 支持 -->  
+		<dependency>  
+		    <groupId>javax.servlet</groupId>  
+		    <artifactId>jstl</artifactId>  
+		</dependency> 
 	</dependencies>
 
 	<build>

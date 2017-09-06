@@ -10,12 +10,16 @@ import org.springframework.stereotype.Component;
 
 import com.xiaosuo.aspectJ.anno.SpringBeanAfterEven;
 import com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven;
-import com.xiaosuo.aspectJ.impl.DefaultAfterEventImpl;
-import com.xiaosuo.aspectJ.impl.DefaultBeforeEventImpl;
+import com.xiaosuo.aspectJ.anno.SpringBeanExceptionEvent;
+import com.xiaosuo.aspectJ.impl.DefaultControllerAfterEventImpl;
+import com.xiaosuo.aspectJ.impl.DefaultControllerBeforeEventImpl;
+import com.xiaosuo.aspectJ.impl.DefaultControllerExceptionEventImpl;
 import com.xiaosuo.aspectJ.interfaces.AnnoAfterEventInterface;
 import com.xiaosuo.aspectJ.interfaces.AnnoBeforeEventInterface;
+import com.xiaosuo.aspectJ.interfaces.ExceptionEventInterface;
 import com.xiaosuo.aspectJ.util.SpringAopUtil;
 import com.xiaosuo.exceptions.EventException;
+import com.xiaosuo.exceptions.base.SuoException;
 
 /**
  * controller事件处理
@@ -27,8 +31,9 @@ import com.xiaosuo.exceptions.EventException;
 @Component
 public class ControllerEventFactory {
 	
-	private static final AnnoBeforeEventInterface beforeEventImpl = new DefaultBeforeEventImpl();
-	private static final AnnoAfterEventInterface afterEventImpl = new DefaultAfterEventImpl();
+	private static final AnnoBeforeEventInterface beforeEventImpl = new DefaultControllerBeforeEventImpl();
+	private static final AnnoAfterEventInterface afterEventImpl = new DefaultControllerAfterEventImpl();
+	private static final ExceptionEventInterface exceptionEventImpl = new DefaultControllerExceptionEventImpl();
 
 	/**
 	 * controller包下并且没有@ControllerEvent注解,返回值为String的切点
@@ -69,10 +74,12 @@ public class ControllerEventFactory {
 				beforeEventImpl.dealAnnoEvent(beforeEven, args);
 			}catch (EventException e) {
 				if(!e.iscontinue){
-					return e.result;
+					return beforeEventImpl.dealReturnValue(e, returnType, args);
 				}
+			}catch (SuoException e) {
+				beforeEventImpl.dealSuoException(e, returnType, args);;
 			}catch (Exception e) {
-				e.printStackTrace();
+				beforeEventImpl.dealException(args);
 			}
 		}
 		
@@ -80,10 +87,11 @@ public class ControllerEventFactory {
 		 * 事中
 		 */
 		boolean hasEx = false;
+		Exception ex = null;
 		try {
 			returnObj = joinPoint.proceed(args);
 		} catch (Throwable e) {
-			e.printStackTrace();
+			ex = (Exception) e;
 			hasEx = true;
 		}
 		
@@ -95,8 +103,10 @@ public class ControllerEventFactory {
 			SpringBeanAfterEven afterEvent = SpringAopUtil.getAnnotationInMethod(joinPoint, SpringBeanAfterEven.class);
 			try{
 				afterEventImpl.dealAnnoEvent(afterEvent, args);
+			}catch (SuoException e) {
+				afterEventImpl.dealSuoException(e, returnType, args);
 			}catch (Exception e) {
-				e.printStackTrace();
+				afterEventImpl.dealException(args);
 			}
 		}
 		
@@ -104,7 +114,12 @@ public class ControllerEventFactory {
 		 * 异常处理
 		 */
 		if(hasEx){
-			
+			SpringBeanExceptionEvent event = null;
+			boolean judException = SpringAopUtil.judResultHasAnnotation(SpringBeanExceptionEvent.class, result);
+			if(judException){
+				event = SpringAopUtil.getAnnotationInMethod(joinPoint, SpringBeanExceptionEvent.class);
+			}
+			returnObj = exceptionEventImpl.dealException(event, ex, returnType, args);
 		}
 		
 		return returnObj;

@@ -1,8 +1,8 @@
 package com.xiaosuo.simple.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Service;
+
+import com.xiaosuo.exceptions.EventException;
 
 /**
  * 测试service
@@ -13,11 +13,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestService {
 
-	public void print(){
-		System.out.println("This is Service");
+	public void print(String type){
+//		System.out.println("This is Service");
+		switch (type) {
+		case "1":
+			System.out.println("Hello World");
+			break;
+
+		default:
+			throw new EventException("print method has a problem");
+		}
 	}
 	
-	public void testBefore(HttpServletRequest request){
+	public void testBefore(String type){
 //		throw new EventException("Before Event Break...");
 		System.out.println("Before Event Break...");
 	}

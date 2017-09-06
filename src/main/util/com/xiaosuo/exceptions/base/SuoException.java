@@ -13,12 +13,7 @@ public class SuoException extends RuntimeException{
 	 * 错误编号
 	 */
 	public String code;
-	/**
-	 * 错误信息
-	 */
-	public String message;
 	
-	public SuoException(){}
 	public SuoException(String message) {
 		super(message);
 	}

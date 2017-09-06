@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven;
 import com.xiaosuo.simple.service.TestService;
@@ -23,13 +24,21 @@ public class TestController {
 	private TestService testService;
 
 	@RequestMapping({"/","/index.do"})
-	@SpringBeanBeforeEven(service="testService", method="testBefore")
 	public String test(HttpServletRequest request){
 		System.out.println("========================Normal Event==========================");
 		String type = request.getParameter("type");
 		System.out.println("事中："+ type);
-		testService.print();
 		
-		return "Hello World";
+		return "index";
+	}
+	
+	@RequestMapping("/main.do")
+	@SpringBeanBeforeEven(service="testService", method="testBefore")
+	public ModelAndView main(String type){
+		ModelAndView mv = new ModelAndView("index");
+		
+		testService.print(type);
+		
+		return mv;
 	}
 }
