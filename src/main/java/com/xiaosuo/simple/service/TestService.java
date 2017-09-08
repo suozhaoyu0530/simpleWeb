@@ -14,7 +14,6 @@ import com.xiaosuo.exceptions.EventException;
 public class TestService {
 
 	public void print(String type){
-//		System.out.println("This is Service");
 		switch (type) {
 		case "1":
 			System.out.println("Hello World");
@@ -27,6 +26,6 @@ public class TestService {
 	
 	public void testBefore(String type){
 //		throw new EventException("Before Event Break...");
-		System.out.println("Before Event Break...");
+		System.out.println("Before Event the type's value is "+ type);
 	}
 }

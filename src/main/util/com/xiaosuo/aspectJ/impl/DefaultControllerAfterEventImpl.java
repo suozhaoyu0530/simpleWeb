@@ -19,7 +19,8 @@ public class DefaultControllerAfterEventImpl extends AbstractControllerEventImpl
 		SpringBeanAfterEven afterEvent = annoToBefore(annotation);
 		String service = afterEvent.service();
 		String method = afterEvent.method();
-		return dealEvent(service, method, inParams);
+		String paramRule = afterEvent.paramRule();
+		return dealEvent(service, method, paramRule, inParams);
 	}
 
 	@Override

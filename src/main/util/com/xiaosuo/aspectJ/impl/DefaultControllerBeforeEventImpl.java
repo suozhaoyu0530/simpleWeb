@@ -19,7 +19,8 @@ public class DefaultControllerBeforeEventImpl extends AbstractControllerEventImp
 		SpringBeanBeforeEven beforeEvent = annoToBefore(annotation);
 		String service = beforeEvent.service();
 		String method = beforeEvent.method();
-		return dealEvent(service, method, inParams);
+		String paramRule = beforeEvent.paramRule();
+		return dealEvent(service, method, paramRule, inParams);
 	}
 
 	@Override

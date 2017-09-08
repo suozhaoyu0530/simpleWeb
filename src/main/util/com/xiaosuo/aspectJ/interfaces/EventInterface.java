@@ -18,7 +18,7 @@ public interface EventInterface {
 	 * @param params
 	 * @return
 	 */
-	Object dealEvent(String service, String method, Object...params);
+	Object dealEvent(String service, String method, String paramRule, Object...params);
 	
 	/**
 	 * 处理返回值
@@ -28,6 +28,15 @@ public interface EventInterface {
 	 * @return
 	 */
 	Object dealReturnValue(Exception e, String returnType, Object[] params);
+	
+	/**
+	 * 处理一般的入参
+	 * 
+	 * @param willParams
+	 * @param inParams
+	 * @return
+	 */
+	Object[] dealNormalInParams(Class<?>[] willTypes, Object[] inParams);
 	
 	/**
 	 * 处理suoException

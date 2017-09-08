@@ -2,6 +2,7 @@ package com.xiaosuo.simple.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,10 +34,11 @@ public class TestController {
 	}
 	
 	@RequestMapping("/main.do")
-	@SpringBeanBeforeEven(service="testService", method="testBefore")
-	public ModelAndView main(String type){
+	@SpringBeanBeforeEven(service="testService", method="testBefore", paramRule="request.type")
+	public ModelAndView main(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("index");
 		
+		String type = request.getParameter("type");
 		testService.print(type);
 		
 		return mv;

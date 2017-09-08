@@ -16,4 +16,5 @@ import java.lang.annotation.Target;
 public @interface SpringBeanFinalEvent {
 	String service();
 	String method();
+	String paramRule() default "";
 }

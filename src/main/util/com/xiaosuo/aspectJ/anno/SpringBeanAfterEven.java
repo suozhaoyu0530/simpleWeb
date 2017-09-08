@@ -16,4 +16,5 @@ import java.lang.annotation.Target;
 public @interface SpringBeanAfterEven {
 	String service();
 	String method();
+	String paramRule() default "";
 }

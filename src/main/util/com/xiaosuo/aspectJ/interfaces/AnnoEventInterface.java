@@ -6,7 +6,7 @@ import java.lang.annotation.Annotation;
  * 通过注解来标记事件的接口
  * 
  * @author suozhaoyu
- * @since  1.0
+ * @since  0.1
  */
 public interface AnnoEventInterface extends EventInterface{
 
@@ -18,4 +18,13 @@ public interface AnnoEventInterface extends EventInterface{
 	 * @return
 	 */
 	Object dealAnnoEvent(Annotation annotation, Object...inParams);
+	
+	/**
+	 * 针对注解对事件的入参进行处理
+	 * 
+	 * @param willParams
+	 * @param inParams
+	 * @return
+	 */
+	Object[] dealAnnoInParams(String paramRule, Class<?>[] willTypes, Object[] inParams);
 }

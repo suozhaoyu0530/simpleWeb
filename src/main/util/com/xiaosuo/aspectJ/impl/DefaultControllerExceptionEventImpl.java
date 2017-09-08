@@ -19,7 +19,8 @@ public class DefaultControllerExceptionEventImpl extends AbstractControllerEvent
 		SpringBeanExceptionEvent event = (SpringBeanExceptionEvent) annotation;
 		String service = event.service();
 		String method = event.method();
-		super.dealEvent(service, method, inParams);
+		String paramRule = event.paramRule();
+		super.dealEvent(service, method, paramRule, inParams);
 		return null;
 	}
 

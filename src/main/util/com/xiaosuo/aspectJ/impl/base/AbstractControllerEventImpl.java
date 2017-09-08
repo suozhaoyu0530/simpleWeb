@@ -30,7 +30,7 @@ public abstract class AbstractControllerEventImpl extends AbstractEventImpl{
 	public Object dealReturnValue(Exception e, String returnType, Object[] params) {
 		if("java.lang.String".equals(returnType)){
 			Optional<Object> requestOp = Stream.of(params)
-					.filter(inParam -> inParam.getClass().getName().equals("javax.servlet.http.HttpServletRequest"))
+					.filter(inParam -> inParam instanceof HttpServletRequest)
 					.findFirst();
 			if(!requestOp.isPresent()){
 				throw new UtilException("未获得入参中的request对象");
@@ -42,7 +42,7 @@ public abstract class AbstractControllerEventImpl extends AbstractEventImpl{
 		}
 		
 		if("void".equals(returnType)){
-			Optional<Object> responseOp = Stream.of(params).filter(inParam -> inParam.getClass().getName().equals("void")).findFirst();
+			Optional<Object> responseOp = Stream.of(params).filter(inParam -> inParam instanceof HttpServletResponse).findFirst();
 			if(!responseOp.isPresent()){
 				throw new UtilException("未获得入参中的response对象");
 			}
