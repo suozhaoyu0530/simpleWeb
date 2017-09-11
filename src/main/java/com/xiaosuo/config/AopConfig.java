@@ -13,9 +13,4 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class AopConfig {
 
-	public static final String base = test();
-	
-	public static final String test(){
-		return "execution(java.lang.String com.xiaosuo..*.controller.*.*(..))";
-	}
 }

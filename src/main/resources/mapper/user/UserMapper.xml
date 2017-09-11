@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaosuo.simple.mapper.UserMapper">
+    <resultMap type="com.xiaosuo.simple.bean.TUser" id="user">
+        <id column="USER_ID" property="userId" />
+        <result column="USER_NAME" property="userName" />
+        <result column="CREDITS" property="credits" />
+        <result column="PASSWORD" property="password"/>
+        <result column="LAST_VISIT" property="lastVisit"/>
+        <result column="LAST_IP" property="lastIp"/>
+    </resultMap>
+
+	<sql id="base_column">
+		TU.USER_ID, TU.USER_NAME, TU.CREDITS, TU.PASSWORD, TU.LAST_VISIT, TU.LAST_IP
+	</sql>
+	
+	<!-- 获取所有的用户 -->
+	<select id="getTUserL" resultMap="user">
+		SELECT <include refid="base_column" />
+		FROM T_USER TU
+	</select>
+	
+	<!-- 添加数据 -->
+	<insert id="insert" parameterType="com.xiaosuo.simple.mapper.UserMapper">
+		INSERT INTO T_USER(USER_NAME, CREDITS, PASSWORD, LAST_VISIT, LAST_IP)
+		VALUES(#{userName}, #{credits}, #{password}, #{lastVisit}, #{lastIp})
+	</insert>
+</mapper>

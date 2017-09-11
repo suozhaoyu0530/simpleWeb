@@ -5,6 +5,7 @@ import java.lang.annotation.Annotation;
 import com.xiaosuo.aspectJ.anno.SpringBeanExceptionEvent;
 import com.xiaosuo.aspectJ.impl.base.AbstractControllerEventImpl;
 import com.xiaosuo.aspectJ.interfaces.ExceptionEventInterface;
+import com.xiaosuo.exceptions.base.SuoException;
 
 /**
  * 默认的controller处理异常的实现方式

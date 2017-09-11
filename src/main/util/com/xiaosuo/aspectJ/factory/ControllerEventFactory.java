@@ -96,6 +96,18 @@ public class ControllerEventFactory {
 		}
 		
 		/*
+		 * 异常处理
+		 */
+		if(hasEx){
+			SpringBeanExceptionEvent event = null;
+			boolean judException = SpringAopUtil.judResultHasAnnotation(SpringBeanExceptionEvent.class, result);
+			if(judException){
+				event = SpringAopUtil.getAnnotationInMethod(joinPoint, SpringBeanExceptionEvent.class);
+			}
+			returnObj = exceptionEventImpl.dealException(event, ex, returnType, args);
+		}
+		
+		/*
 		 * 事后
 		 */
 		boolean judAfter = SpringAopUtil.judResultHasAnnotation(SpringBeanAfterEven.class, result);
@@ -110,17 +122,6 @@ public class ControllerEventFactory {
 			}
 		}
 		
-		/*
-		 * 异常处理
-		 */
-		if(hasEx){
-			SpringBeanExceptionEvent event = null;
-			boolean judException = SpringAopUtil.judResultHasAnnotation(SpringBeanExceptionEvent.class, result);
-			if(judException){
-				event = SpringAopUtil.getAnnotationInMethod(joinPoint, SpringBeanExceptionEvent.class);
-			}
-			returnObj = exceptionEventImpl.dealException(event, ex, returnType, args);
-		}
 		
 		return returnObj;
 	}
