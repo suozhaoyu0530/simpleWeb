@@ -7,12 +7,12 @@ import com.xiaosuo.aspectJ.impl.base.AbstractControllerEventImpl;
 import com.xiaosuo.aspectJ.interfaces.AnnoAfterEventInterface;
 
 /**
- * 默认的controller处理事后的实现方式
+ * 默认的处理事后的实现方式
  * 
  * @author suozhaoyu
  * @since  0.1
  */
-public class DefaultControllerAfterEventImpl extends AbstractControllerEventImpl implements AnnoAfterEventInterface{
+public class DefaultAfterEventImpl extends AbstractControllerEventImpl implements AnnoAfterEventInterface{
 
 	@Override
 	public Object dealAnnoEvent(Annotation annotation, Object... inParams) {
