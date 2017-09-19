@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import com.xiaosuo.aspectJ.anno.SpringBeanAfterEven;
 import com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven;
 import com.xiaosuo.aspectJ.anno.SpringBeanExceptionEvent;
-import com.xiaosuo.aspectJ.impl.DefaultControllerAfterEventImpl;
-import com.xiaosuo.aspectJ.impl.DefaultControllerBeforeEventImpl;
-import com.xiaosuo.aspectJ.impl.DefaultControllerExceptionEventImpl;
+import com.xiaosuo.aspectJ.impl.DefaultAfterEventImpl;
+import com.xiaosuo.aspectJ.impl.DefaultBeforeEventImpl;
+import com.xiaosuo.aspectJ.impl.DefaultExceptionEventImpl;
 import com.xiaosuo.aspectJ.interfaces.AnnoAfterEventInterface;
 import com.xiaosuo.aspectJ.interfaces.AnnoBeforeEventInterface;
 import com.xiaosuo.aspectJ.interfaces.ExceptionEventInterface;
@@ -31,9 +31,9 @@ import com.xiaosuo.exceptions.base.SuoException;
 @Component
 public class ControllerEventFactory {
 	
-	private static final AnnoBeforeEventInterface beforeEventImpl = new DefaultControllerBeforeEventImpl();
-	private static final AnnoAfterEventInterface afterEventImpl = new DefaultControllerAfterEventImpl();
-	private static final ExceptionEventInterface exceptionEventImpl = new DefaultControllerExceptionEventImpl();
+	private static final AnnoBeforeEventInterface beforeEventImpl = new DefaultBeforeEventImpl();
+	private static final AnnoAfterEventInterface afterEventImpl = new DefaultAfterEventImpl();
+	private static final ExceptionEventInterface exceptionEventImpl = new DefaultExceptionEventImpl();
 
 	/**
 	 * controller包下并且没有@ControllerEvent注解,返回值为String的切点

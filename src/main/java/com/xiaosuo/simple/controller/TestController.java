@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven;
 import com.xiaosuo.simple.service.TestService;
 
 /**
@@ -34,7 +33,6 @@ public class TestController {
 	}
 	
 	@RequestMapping("/main.do")
-	@SpringBeanBeforeEven(service="testService", method="testBefore", paramRule="request.type")
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mv = new ModelAndView("index");
 		

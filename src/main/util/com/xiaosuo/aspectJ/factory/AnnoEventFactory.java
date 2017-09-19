@@ -1,14 +1,16 @@
 package com.xiaosuo.aspectJ.factory;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import com.xiaosuo.aspectJ.anno.SpringBeanAfterEven;
 import com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven;
+import com.xiaosuo.exceptions.base.SuoException;
 
 /**
  * 注解事件的处理工厂
@@ -16,33 +18,25 @@ import com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven;
  * @author suozhaoyu
  * @since  0.1
  */
+@Aspect
+@Component
+@Order(5)
 public class AnnoEventFactory {
 	
-//	@Pointcut("execution(* com.xiaosuo..*.controller.*.*(..)) && @annotation(com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven)")
-	@Pointcut("@annotation(com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven)")
+	@Pointcut("@annotation(com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven) && !@annotation(org.springframework.web.bind.annotation.RequestMapping)")
 	private void before(){}
-//	@Pointcut("execution(* com.xiaosuo..*.controller.*.*(..)) && @annotation(com.xiaosuo.aspectJ.anno.SpringBeanAfterEven)")
-	@Pointcut("@annotation(com.xiaosuo.aspectJ.anno.SpringBeanAfterEven)")
+	@Pointcut("@annotation(com.xiaosuo.aspectJ.anno.SpringBeanAfterEven) && !@annotation(org.springframework.web.bind.annotation.RequestMapping)")
 	private void after(){}
-	@Pointcut("execution(* com.xiaosuo..*.controller.*.*(..))")
-	private void all(){}
 	
 	@Before("before() && @annotation(event)")
 	public void annoBefore(JoinPoint joinPoint, SpringBeanBeforeEven event){
 		System.out.println("=================================This is Before Event=======================");
-		
-		Object[] args = joinPoint.getArgs();
-		HttpServletRequest request = (HttpServletRequest) args[0];
-		String type = request.getParameter("type");
-		System.out.println("事前："+ type);
-		request.setAttribute("type", "0003");
-		System.out.println(event.service() +"=========="+ event.method());
+		throw new SuoException("Test exception rollback status");
 	}
 	
-	@AfterReturning(value="after() && @annotation(event)", returning="result")
-	public void annoAfter(String result, SpringBeanAfterEven event){
+	@AfterReturning(value="after() && @annotation(event)")
+	public void annoAfter(SpringBeanAfterEven event){
 		System.out.println("=================================This is After Event========================");
-		System.out.println(result);
-		System.out.println(event.service() +"=========="+ event.method());
+		throw new SuoException("Test exception rollback status");
 	}
 }

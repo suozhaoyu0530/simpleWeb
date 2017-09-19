@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.xiaosuo.aspectJ.anno.SpringBeanAfterEven;
 import com.xiaosuo.exceptions.EventException;
 import com.xiaosuo.simple.bean.TUser;
 import com.xiaosuo.simple.mapper.UserMapper;
@@ -23,6 +24,7 @@ public class TestService {
 	private UserMapper userMapper;
 
 	@Transactional
+	@SpringBeanAfterEven(service="testService", method="testBefore")
 	public void print(String type){
 		List<TUser> userL = userMapper.getTUserL();
 		System.out.println(userL.size() +"====================");
@@ -31,7 +33,10 @@ public class TestService {
 		user.setUserName("John");
 		user.setPassword("password");
 		userMapper.insert(user);
-		
+	}
+	
+	public void testBefore(String type){
+//		throw new EventException("Before Event Break...");
 		switch (type) {
 		case "1":
 			System.out.println("Hello World");
@@ -42,8 +47,15 @@ public class TestService {
 		}
 	}
 	
-	public void testBefore(String type){
-//		throw new EventException("Before Event Break...");
-		System.out.println("Before Event the type's value is "+ type);
+	public void testAfter(String type){
+		System.out.println("After Event Break...");
+		switch (type) {
+		case "1":
+			System.out.println("Hello World");
+			break;
+
+		default:
+			throw new EventException("print method has a problem");
+		}
 	}
 }
