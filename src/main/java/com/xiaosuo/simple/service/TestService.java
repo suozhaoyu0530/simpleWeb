@@ -24,7 +24,7 @@ public class TestService {
 	private UserMapper userMapper;
 
 	@Transactional
-	@SpringBeanAfterEven(service="testService", method="testBefore")
+	@SpringBeanAfterEven(service="testService", method="testAfter")
 	public void print(String type){
 		List<TUser> userL = userMapper.getTUserL();
 		System.out.println(userL.size() +"====================");

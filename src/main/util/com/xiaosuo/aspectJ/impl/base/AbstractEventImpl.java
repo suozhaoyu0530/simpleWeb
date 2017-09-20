@@ -48,7 +48,11 @@ public abstract class AbstractEventImpl implements AnnoEventInterface{
 			if(e.getTargetException().getClass().getName().equals("com.xiaosuo.exceptions.EventException")){
 				throw (EventException) e.getTargetException();
 			}else{
-				e.printStackTrace();
+				if(e.getTargetException() instanceof RuntimeException){
+					throw (RuntimeException)e.getTargetException();
+				}else{
+					e.printStackTrace();
+				}
 			}
 		}
 		
