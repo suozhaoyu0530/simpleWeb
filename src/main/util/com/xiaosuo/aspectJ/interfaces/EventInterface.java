@@ -46,6 +46,16 @@ public interface EventInterface {
 	 * @param inParams
 	 */
 	default void dealSuoException(SuoException e, String returnType, Object[] inParams){
-		
+		e.printStackTrace();
+	}
+	
+	/**
+	 * 处理异常
+	 * 
+	 * @param e
+	 * @param inParams
+	 */
+	default void dealException(Exception e, Object[] inParams){
+		e.printStackTrace();
 	}
 }

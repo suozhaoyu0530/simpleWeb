@@ -61,7 +61,7 @@ public class AnnoEventFactory {
 			beforeEventImpl.dealSuoException(e, returnType, args);
 			throw e;
 		}catch (Exception e) {
-			beforeEventImpl.dealException(args);
+			beforeEventImpl.dealException(e, args);
 			throw e;
 		}
 	}
@@ -88,7 +88,7 @@ public class AnnoEventFactory {
 			afterEventImpl.dealSuoException(e, returnType, args);
 			throw e;
 		}catch (Exception e) {
-			afterEventImpl.dealException(args);
+			afterEventImpl.dealException(e, args);
 			throw e;
 		}
 	}

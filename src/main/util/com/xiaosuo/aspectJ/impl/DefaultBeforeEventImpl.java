@@ -27,9 +27,4 @@ public class DefaultBeforeEventImpl extends AbstractControllerEventImpl implemen
 	public SpringBeanBeforeEven annoToBefore(Annotation annotation) {
 		return (SpringBeanBeforeEven) annotation;
 	}
-
-	@Override
-	public void dealException(Object... inParams) {
-		
-	}
 }

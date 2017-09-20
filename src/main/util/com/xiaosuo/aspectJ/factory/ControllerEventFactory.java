@@ -79,7 +79,7 @@ public class ControllerEventFactory {
 			}catch (SuoException e) {
 				beforeEventImpl.dealSuoException(e, returnType, args);;
 			}catch (Exception e) {
-				beforeEventImpl.dealException(args);
+				beforeEventImpl.dealException(e, args);
 			}
 		}
 		
@@ -118,7 +118,7 @@ public class ControllerEventFactory {
 			}catch (SuoException e) {
 				afterEventImpl.dealSuoException(e, returnType, args);
 			}catch (Exception e) {
-				afterEventImpl.dealException(args);
+				afterEventImpl.dealException(e, args);
 			}
 		}
 		

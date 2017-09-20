@@ -19,11 +19,4 @@ public interface AnnoAfterEventInterface extends AnnoEventInterface{
 	 * @return
 	 */
 	SpringBeanAfterEven annoToBefore(Annotation annotation);
-	
-	/**
-	 * 处理异常
-	 * 
-	 * @param args
-	 */
-	void dealException(Object...args);
 }
