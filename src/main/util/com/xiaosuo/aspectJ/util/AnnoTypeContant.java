@@ -7,7 +7,7 @@ import java.util.Map;
  * 自定义注解的类型区分
  * 
  * @author suozhaoyu
- * @version 0.1
+ * @version 0.0.1
  */
 public class AnnoTypeContant {
 

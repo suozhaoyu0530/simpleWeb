@@ -6,14 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 异常事件注解
+ * 事后事件注解
  * 
  * @author suozhaoyu
  * @version 0.0.1
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface SpringBeanExceptionEvent {
+public @interface SpringBeanAfterTransactionalEven {
 	String service();
 	String method();
 	String paramRule() default "";

@@ -10,7 +10,7 @@ import com.xiaosuo.simple.bean.TUser;
  * user表的数据库操作
  * 
  * @author suozhaoyu
- * @since  2017-09-08 16:01:54
+ * @since  0.0.1
  */
 @Mapper
 public interface UserMapper {

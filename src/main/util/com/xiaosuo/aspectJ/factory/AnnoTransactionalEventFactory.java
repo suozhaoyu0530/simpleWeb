@@ -10,8 +10,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.xiaosuo.aspectJ.anno.SpringBeanAfterEven;
-import com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven;
+import com.xiaosuo.aspectJ.anno.SpringBeanAfterTransactionalEven;
+import com.xiaosuo.aspectJ.anno.SpringBeanBeforeTransactionalEven;
 import com.xiaosuo.aspectJ.impl.DefaultAfterEventImpl;
 import com.xiaosuo.aspectJ.impl.DefaultBeforeEventImpl;
 import com.xiaosuo.aspectJ.interfaces.AnnoAfterEventInterface;
@@ -28,15 +28,15 @@ import com.xiaosuo.exceptions.base.SuoException;
  */
 @Aspect
 @Component
-@Order(5)
-public class AnnoEventFactory {
+@Order(15)
+public class AnnoTransactionalEventFactory {
 	
 	private static final AnnoBeforeEventInterface beforeEventImpl = new DefaultBeforeEventImpl();
 	private static final AnnoAfterEventInterface afterEventImpl = new DefaultAfterEventImpl();
 	
-	@Pointcut("@annotation(com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven) && !@annotation(org.springframework.web.bind.annotation.RequestMapping)")
+	@Pointcut("@annotation(com.xiaosuo.aspectJ.anno.SpringBeanBeforeTransactionalEven) && !@annotation(org.springframework.web.bind.annotation.RequestMapping)")
 	private void before(){}
-	@Pointcut("@annotation(com.xiaosuo.aspectJ.anno.SpringBeanAfterEven) && !@annotation(org.springframework.web.bind.annotation.RequestMapping)")
+	@Pointcut("@annotation(com.xiaosuo.aspectJ.anno.SpringBeanAfterTransactionalEven) && !@annotation(org.springframework.web.bind.annotation.RequestMapping)")
 	private void after(){}
 	
 	/**
@@ -46,7 +46,7 @@ public class AnnoEventFactory {
 	 * @param event
 	 */
 	@Before("before() && @annotation(event)")
-	public void annoBefore(JoinPoint joinPoint, SpringBeanBeforeEven event){
+	public void annoBefore(JoinPoint joinPoint, SpringBeanBeforeTransactionalEven event){
 		Method method = SpringAopUtil.getMethod(joinPoint);
 		String returnType = method.getReturnType().getName();
 		Object[] args = joinPoint.getArgs();
@@ -73,7 +73,7 @@ public class AnnoEventFactory {
 	 * @param event
 	 */
 	@AfterReturning(value="after() && @annotation(event)")
-	public void annoAfter(JoinPoint joinPoint, SpringBeanAfterEven event){
+	public void annoAfter(JoinPoint joinPoint, SpringBeanAfterTransactionalEven event){
 		Method method = SpringAopUtil.getMethod(joinPoint);
 		String returnType = method.getReturnType().getName();
 		Object[] args = joinPoint.getArgs();

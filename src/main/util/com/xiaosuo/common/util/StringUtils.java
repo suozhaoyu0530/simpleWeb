@@ -7,7 +7,7 @@ import java.util.stream.Stream;
  * 字符串的工具类
  * 
  * @author suozhaoyu
- * @since  0.1
+ * @since  0.0.1
  */
 public class StringUtils {
 

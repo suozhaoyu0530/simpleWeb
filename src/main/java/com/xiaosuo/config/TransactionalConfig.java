@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 事务配置
  * 
  * @author suozhaoyu
- * @since  0.1
+ * @since  0.0.1
  */
 @Configuration
 @EnableTransactionManagement(order=10)

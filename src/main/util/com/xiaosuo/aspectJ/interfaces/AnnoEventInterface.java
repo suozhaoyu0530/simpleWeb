@@ -6,7 +6,7 @@ import java.lang.annotation.Annotation;
  * 通过注解来标记事件的接口
  * 
  * @author suozhaoyu
- * @since  0.1
+ * @since  0.0.1
  */
 public interface AnnoEventInterface extends EventInterface{
 

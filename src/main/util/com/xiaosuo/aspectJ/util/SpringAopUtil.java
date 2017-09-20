@@ -11,7 +11,7 @@ import org.springframework.core.annotation.AnnotationUtils;
  * aop工具
  * 
  * @author suozhaoyu
- * @version 0.1
+ * @version 0.0.1
  */
 public class SpringAopUtil {
 

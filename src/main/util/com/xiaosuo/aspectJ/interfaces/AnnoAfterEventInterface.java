@@ -8,7 +8,7 @@ import com.xiaosuo.aspectJ.anno.SpringBeanAfterEven;
  * 事后事件接口
  * 
  * @author suozhaoyu
- * @since  0.1
+ * @since  0.0.1
  */
 public interface AnnoAfterEventInterface extends AnnoEventInterface{
 

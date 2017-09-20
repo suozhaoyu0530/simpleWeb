@@ -25,7 +25,7 @@ import com.xiaosuo.exceptions.base.SuoException;
  * controller事件处理
  * 
  * @author suozhaoyu
- * @version 0.1
+ * @version 0.0.1
  */
 @Aspect
 @Component

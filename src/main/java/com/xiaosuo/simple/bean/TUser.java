@@ -4,7 +4,7 @@ package com.xiaosuo.simple.bean;
  * user实体
  * 
  * @author suozhaoyu
- * @since  0.1
+ * @since  0.0.1
  */
 public class TUser {
 

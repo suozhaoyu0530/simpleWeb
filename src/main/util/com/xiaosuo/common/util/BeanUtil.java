@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
  * bean的工具类
  * 
  * @author suozhaoyu
- * @since  0.1
+ * @since  0.0.1
  */
 public class BeanUtil {
 

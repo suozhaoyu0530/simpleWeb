@@ -6,7 +6,7 @@ import com.xiaosuo.exceptions.base.SuoException;
  * 事件异常
  * 
  * @author suozhaoyu
- * @version 0.1
+ * @version 0.0.1
  */
 @SuppressWarnings("serial")
 public class EventException extends SuoException {

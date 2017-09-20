@@ -14,7 +14,7 @@ import com.xiaosuo.exceptions.UtilException;
  * service的method缓存
  * 
  * @author suozhaoyu
- * @since  1.0
+ * @since  0.0.1
  */
 public class ServiceMethodCache {
 

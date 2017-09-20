@@ -21,7 +21,7 @@ import com.xiaosuo.exceptions.base.SuoException;
  * 默认的处理方法
  * 
  * @author suozhaoyu
- * @since  0.1
+ * @since  0.0.1
  */
 public abstract class AbstractEventImpl implements AnnoEventInterface{
 

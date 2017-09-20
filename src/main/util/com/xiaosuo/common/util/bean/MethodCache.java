@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
  * 方法缓存对象
  * 
  * @author suozhaoyu
- * @since  1.0
+ * @since  0.0.1
  */
 public class MethodCache {
 

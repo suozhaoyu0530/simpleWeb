@@ -8,7 +8,7 @@ import com.xiaosuo.aspectJ.anno.SpringBeanBeforeEven;
  * 事前事件接口
  * 
  * @author suozhaoyu
- * @since  1.0
+ * @since  0.0.1
  */
 public interface AnnoBeforeEventInterface extends AnnoEventInterface{
 

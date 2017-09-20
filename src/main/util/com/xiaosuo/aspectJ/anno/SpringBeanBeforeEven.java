@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * 事前事件注解
  * 
  * @author suozhaoyu
- * @version 0.1
+ * @version 0.0.1
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

@@ -17,7 +17,7 @@ import com.xiaosuo.exceptions.UtilException;
  * 针对controller的事件实现
  * 
  * @author suozhaoyu
- * @since  0.1
+ * @since  0.0.1
  */
 public abstract class AbstractControllerEventImpl extends AbstractEventImpl{
 

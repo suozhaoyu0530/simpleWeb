@@ -15,7 +15,7 @@ import com.xiaosuo.simple.service.TestService;
  * 用来测试的controller
  * 
  * @author suozhaoyu
- * @since  0.1
+ * @since  0.0.1
  */
 @RestController
 public class TestController {

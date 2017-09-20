@@ -6,7 +6,7 @@ import com.xiaosuo.exceptions.base.SuoException;
  * 工具类中的异常
  * 
  * @author suozhaoyu
- * @since  1.0
+ * @since  0.0.1
  */
 @SuppressWarnings("serial")
 public class UtilException extends SuoException{

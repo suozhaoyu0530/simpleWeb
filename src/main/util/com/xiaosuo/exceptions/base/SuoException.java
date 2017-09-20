@@ -4,7 +4,7 @@ package com.xiaosuo.exceptions.base;
  * 项目的基础异常
  * 
  * @author suozhaoyu
- * @version 0.1
+ * @version 0.0.1
  */
 @SuppressWarnings("serial")
 public class SuoException extends RuntimeException{
