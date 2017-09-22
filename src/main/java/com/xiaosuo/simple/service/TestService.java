@@ -58,4 +58,16 @@ public class TestService {
 			throw new EventException("print method has a problem");
 		}
 	}
+	
+	public void testMap(String type){
+		System.out.println(type +"===================");
+		switch (type) {
+		case "1":
+			System.out.println("test map success");
+			break;
+
+		default:
+			throw new EventException("测试");
+		}
+	}
 }
